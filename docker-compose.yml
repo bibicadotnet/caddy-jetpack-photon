@@ -5,8 +5,10 @@ services:
     networks:
       - caddy
     labels:
-      caddy: whoami.example.com
-      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy: img.bibica.net
+      caddy.handle_path: /*
+      caddy.handle_path.0_rewrite: * /bibica.net/wp-content/uploads/{uri}
+      caddy.handle_path.1_reverse_proxy: {{https://i0.wp.com}}
 
 networks:
   caddy:
